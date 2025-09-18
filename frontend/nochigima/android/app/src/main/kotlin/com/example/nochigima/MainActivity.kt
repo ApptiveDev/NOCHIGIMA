@@ -1,4 +1,4 @@
-package com.example.nochigima
+package com.nochigima.app
 
 import io.flutter.embedding.android.FlutterActivity
 
