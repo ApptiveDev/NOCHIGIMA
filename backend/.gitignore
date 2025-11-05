@@ -38,3 +38,6 @@ out/
 
 ### Mac OS ###
 .DS_Store
+
+##application-local.yml 파일 무시##
+application-local.yml
