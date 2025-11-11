@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:frontend/screens/home/home_screen.dart';
 import 'package:frontend/screens/mypage/mypage_screen.dart';
+import 'package:frontend/screens/search/search_screen.dart';
+import 'package:frontend/screens/brand-promotion/promo_screen.dart';
+import 'package:frontend/screens/social/social_screen.dart';
 
 class MainScreen extends StatefulWidget{
   const MainScreen({super.key});
@@ -13,17 +18,25 @@ class _MainScreenState extends State<MainScreen>{
   int index = 0;
   static const List<Widget> _pages = <Widget>[
     HomeScreen(),
+    SearchScreen(),
+    PromoScreen(),
+    SocialScreen(),
     MypageScreen(),
   ];
 
   void _onTapped(int index){
     setState(() {
-      index = index;
+      this.index = index;
     });
   }
 
   @override
   Widget build(BuildContext context){
+
+    final Color activeColor = Color(0xFF333F);
+    final Color inactiveColor = Colors.grey[300]!;
+
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home screen'),
@@ -32,10 +45,20 @@ class _MainScreenState extends State<MainScreen>{
         index: index,
         children: _pages,
       ),
+
       bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          type: BottomNavigationBarType.fixed,
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: SvgPicture.asset(
+                'assets/images/nav_home.svg',
+                width: 20,
+                height: 20,
+                colorFilter: ColorFilter.mode(
+                  inactiveColor,
+                  BlendMode.srcIn,
+                )
+              ),
               label: '홈',
             ),
             BottomNavigationBarItem(
