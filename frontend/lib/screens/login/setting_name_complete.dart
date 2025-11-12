@@ -16,7 +16,6 @@ class Namecomplete extends StatelessWidget {
             Container(
               // celebration 사진넣기
               height: 100,
-
             ),
             SizedBox(height: 37),
             Text(

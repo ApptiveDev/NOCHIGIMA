@@ -15,53 +15,50 @@ class _SettingnameState extends State<Settingname> {
   bool _isButtonEnabled = false;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _nicknameController.addListener(_validateInput);
   }
+
   @override
-  void dispose(){
+  void dispose() {
     _nicknameController.dispose();
     super.dispose();
   }
-  void _validateInput(){
+
+  void _validateInput() {
     setState(() {
       int textLength = _nicknameController.text.length;
       _isButtonEnabled = textLength >= 2 && textLength <= 8;
     });
   }
-  void submitButton(String nickname){
+
+  void submitButton(String nickname) {
     // nickname needs to be sent to backend
     print("제출할 닉네임: $nickname");
     //go to next page
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => Namecomplete(nickName: nickname)
-        ),
+      context,
+      MaterialPageRoute(builder: (context) => Namecomplete(nickName: nickname)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-
-      ),
+      appBar: AppBar(backgroundColor: Colors.white, elevation: 0),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                "닉네임을 입력하세요",
-                style: TextStyle(
-                    color: Colors.grey[800],
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                )
+              "닉네임을 입력하세요",
+              style: TextStyle(
+                color: Colors.grey[800],
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             SizedBox(height: 20),
             Container(
@@ -69,15 +66,19 @@ class _SettingnameState extends State<Settingname> {
                 controller: _nicknameController,
                 decoration: InputDecoration(
                   hintText: "닉네임 입력",
-                  hintStyle: TextStyle(
-                    color: Colors.grey[400]
-                  ),
+                  hintStyle: TextStyle(color: Colors.grey[400]),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFF333F), width: 2.0),
+                    borderSide: BorderSide(
+                      color: Color(0xFFFF333F),
+                      width: 2.0,
+                    ),
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFF333F), width: 2.0),
+                    borderSide: BorderSide(
+                      color: Color(0xFFFF333F),
+                      width: 2.0,
+                    ),
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                 ),
@@ -89,7 +90,7 @@ class _SettingnameState extends State<Settingname> {
               style: TextStyle(
                 color: Colors.grey[400],
                 fontSize: 14,
-                fontWeight: FontWeight.normal
+                fontWeight: FontWeight.normal,
               ),
             ),
             Spacer(),
@@ -97,9 +98,11 @@ class _SettingnameState extends State<Settingname> {
               width: double.infinity,
               height: 60,
               child: ElevatedButton(
-                onPressed:_isButtonEnabled ? () {
-                  submitButton(_nicknameController.text);
-                }:null,
+                onPressed: _isButtonEnabled
+                    ? () {
+                        submitButton(_nicknameController.text);
+                      }
+                    : null,
                 child: Text(
                   "다음",
                   style: TextStyle(
@@ -113,13 +116,13 @@ class _SettingnameState extends State<Settingname> {
                   disabledBackgroundColor: Color(0xFFFFD9DC),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)
-                  )
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
-            ),
+              ),
             ),
             SizedBox(height: 20),
-            ],
+          ],
         ),
       ),
     );
