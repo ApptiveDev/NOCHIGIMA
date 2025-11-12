@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:frontend/screens/login/nameComplete.dart';
+import 'package:frontend/screens/login/setting_name_complete.dart';
 
 class Settingname extends StatefulWidget {
   const Settingname({super.key});
@@ -36,7 +36,9 @@ class _SettingnameState extends State<Settingname> {
     //go to next page
     Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Namecomplete()),
+        MaterialPageRoute(
+            builder: (context) => Namecomplete(nickName: nickname)
+        ),
     );
   }
 
@@ -92,8 +94,8 @@ class _SettingnameState extends State<Settingname> {
             ),
             Spacer(),
             Container(
-              width: double.infinity, // 너비를 화면에 꽉 채움
-              height: 70, // 버튼 높이 지정 (선택 사항)
+              width: double.infinity,
+              height: 60,
               child: ElevatedButton(
                 onPressed:_isButtonEnabled ? () {
                   submitButton(_nicknameController.text);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import './settingName.dart';
+import './setting_name.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
