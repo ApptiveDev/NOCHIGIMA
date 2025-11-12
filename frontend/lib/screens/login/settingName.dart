@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:frontend/screens/login/nameComplete.dart';
 
 class Settingname extends StatefulWidget {
   const Settingname({super.key});
@@ -10,9 +11,33 @@ class Settingname extends StatefulWidget {
 }
 
 class _SettingnameState extends State<Settingname> {
+  final _nicknameController = TextEditingController();
+  bool _isButtonEnabled = false;
 
-  void submitButton(buttons){
-
+  @override
+  void initState(){
+    super.initState();
+    _nicknameController.addListener(_validateInput);
+  }
+  @override
+  void dispose(){
+    _nicknameController.dispose();
+    super.dispose();
+  }
+  void _validateInput(){
+    setState(() {
+      int textLength = _nicknameController.text.length;
+      _isButtonEnabled = textLength >= 2 && textLength <= 8;
+    });
+  }
+  void submitButton(String nickname){
+    // nickname needs to be sent to backend
+    print("제출할 닉네임: $nickname");
+    //go to next page
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Namecomplete()),
+    );
   }
 
   @override
@@ -39,6 +64,7 @@ class _SettingnameState extends State<Settingname> {
             SizedBox(height: 20),
             Container(
               child: TextField(
+                controller: _nicknameController,
                 decoration: InputDecoration(
                   hintText: "닉네임 입력",
                   hintStyle: TextStyle(
@@ -69,9 +95,9 @@ class _SettingnameState extends State<Settingname> {
               width: double.infinity, // 너비를 화면에 꽉 채움
               height: 70, // 버튼 높이 지정 (선택 사항)
               child: ElevatedButton(
-                onPressed: () {
-                  submitButton('next');
-                },
+                onPressed:_isButtonEnabled ? () {
+                  submitButton(_nicknameController.text);
+                }:null,
                 child: Text(
                   "다음",
                   style: TextStyle(
@@ -81,7 +107,8 @@ class _SettingnameState extends State<Settingname> {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFFD9DC),
+                  backgroundColor: Color(0xFFFF333F),
+                  disabledBackgroundColor: Color(0xFFFFD9DC),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)
