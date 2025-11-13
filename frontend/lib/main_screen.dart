@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:frontend/core/app_colors.dart';
 
 import 'package:frontend/screens/home/home_screen.dart';
 import 'package:frontend/screens/mypage/mypage_screen.dart';
@@ -15,7 +16,8 @@ class MainScreen extends StatefulWidget{
 }
 
 class _MainScreenState extends State<MainScreen>{
-  int index = 0;
+  int _selectedIndex = 0;
+
   static const List<Widget> _pages = <Widget>[
     HomeScreen(),
     SearchScreen(),
@@ -26,62 +28,68 @@ class _MainScreenState extends State<MainScreen>{
 
   void _onTapped(int index){
     setState(() {
-      this.index = index;
+      this._selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context){
 
-    final Color activeColor = Color(0xFF333F);
-    final Color inactiveColor = Colors.grey[300]!;
+    BottomNavigationBarItem svgItem(String asset, String label, int idx){
+      final bool active = _selectedIndex == idx;
+      final Color color = active? AppColors.nochigimaColor : Colors.grey[300]!;
 
+      return BottomNavigationBarItem(icon: SvgPicture.asset(
+        asset,
+        width: 20,
+        height: 20,
+        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+      ),
+      label: label,
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home screen'),
-      ),
-      body: IndexedStack(
-        index: index,
-        children: _pages,
+        title: const Text('Main screen'),
       ),
 
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/images/nav_home.svg',
-                width: 20,
-                height: 20,
-                colorFilter: ColorFilter.mode(
-                  inactiveColor,
-                  BlendMode.srcIn,
-                )
-              ),
-              label: '홈',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: '검색',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.local_mall),
-              label: '우리동네',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.commute),
-              label: '소셜',
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: '마이'
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _pages,
+      ),
+      bottomNavigationBar: BottomAppBar(
+        height: 89,
+
+        color: Colors.white,
+
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            _buildCustomNavItem(
+              index:0,
+              assetName: 'assets/images/nav_home.svg',
+              label:'홈',
             ),
           ],
-      currentIndex: index,
-      selectedItemColor: Colors.red,
-      onTap: _onTapped,
+        ),
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //     backgroundColor: Colors.white,
+      //     type: BottomNavigationBarType.fixed,
+      //     currentIndex: _selectedIndex,
+      //     onTap: _onTapped,
+      //
+      //     selectedItemColor: AppColors.nochigimaColor,
+      //     unselectedItemColor: Colors.grey[300],
+      //     items: <BottomNavigationBarItem>[
+      //       svgItem('assets/images/nav_home.svg', '홈', 0),
+      //       svgItem('assets/images/nav_search.svg', '검색', 1),
+      //       svgItem('assets/images/nav_ourtown.svg', '우리동네', 2),
+      //       svgItem('assets/images/nav_social.svg', '소셜', 3),
+      //       svgItem('assets/images/nav_mypage.svg', '마이', 4),
+      //     ],
+      // ),
     );
   }
 }
