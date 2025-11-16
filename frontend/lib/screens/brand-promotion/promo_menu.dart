@@ -1,30 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/screens/brand-promotion/search_promotion.dart';
 
-class PromoMenu extends StatelessWidget {
+
+class PromoMenu extends StatefulWidget {
   const PromoMenu({super.key});
 
-  Widget _buildMenuItem(String label, String image) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // image 삽입
-          SizedBox(height: 13),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Colors.grey[600],
-            ),
-          ),
-        ],
-      ),
+  @override
+  State<PromoMenu> createState() => _PromoMenuState();
+}
+
+class _PromoMenuState extends State<PromoMenu> {
+  Widget _buildMenuItem(int index, String label, String image){
+    return InkWell(
+
     );
   }
 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
