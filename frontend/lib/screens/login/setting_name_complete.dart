@@ -14,7 +14,7 @@ class Namecomplete extends StatelessWidget {
           children: [
             Spacer(flex: 2),
             Container(
-              // celebration 사진넣기
+              child: Image.asset("assets/images/celebrate.png"),
               height: 100,
             ),
             SizedBox(height: 37),

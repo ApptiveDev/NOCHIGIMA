@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'package:flutter_svg/svg.dart';
 import './setting_name.dart';
 
 class Login extends StatelessWidget {
@@ -41,7 +42,7 @@ class Login extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                // 놓치지마 로고 img
+                child: SvgPicture.asset('assets/images/Logo.svg',width: 150,),
               ),
               Text(
                 "세상의 모든 프로모션을 모아 한눈에",
@@ -51,7 +52,7 @@ class Login extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              SizedBox(height: 100), // sparser()로 해야하나?
+              SizedBox(height: 100),
               Container(
                 width: double.infinity,
                 height: 60,
@@ -59,7 +60,7 @@ class Login extends StatelessWidget {
                   onPressed: () {
                     _handleLogin(context, 'kakao');
                   },
-                  // icon: Image(im),
+                  icon: SvgPicture.asset('assets/images/kakao_icon.svg',width: 20,),
                   label: Text(
                     "카카오로 시작하기",
                     style: TextStyle(
@@ -87,7 +88,7 @@ class Login extends StatelessWidget {
                   onPressed: () {
                     _handleLogin(context, 'google');
                   },
-                  //icon: , google icon삽입
+                  icon: SvgPicture.asset('assets/images/google_icon.svg', width: 20,),
                   label: Text(
                     "Google로 시작하기",
                     style: TextStyle(
