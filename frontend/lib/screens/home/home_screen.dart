@@ -7,38 +7,49 @@ class HomeScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: GestureDetector(
+          title: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
             child: Row(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SvgPicture.asset(
-                  'assets/images/appbar_location.svg',
-                  width: 15,
-                  height: 18,
-                  colorFilter: ColorFilter.mode(AppColors.nochigimaColor, BlendMode.srcIn),
+                GestureDetector(
+                  child:Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/appbar_location.svg',
+                        width: 15,
+                        height: 18,
+                        colorFilter: ColorFilter.mode(AppColors.nochigimaColor, BlendMode.srcIn),
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        '부산대학로 63번길 2',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Icon(Icons.keyboard_arrow_down, color: Colors.black),
+                    ],
+                  )
                 ),
-                SizedBox(width: 4),
-                Text(
-                  '부산대학로 63번길 2',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontFamily: "Pretendard",
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Icon(Icons.keyboard_arrow_down, color: Colors.black),
               ],
             ),
           ),
             actions:[
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.notifications_none, color: Colors.black),
+                icon: SvgPicture.asset(
+                  'assets/images/notification.svg',
+                  width: 24,
+                  height: 24,
+                  colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                )
               ),
               SizedBox(width: 4),
             ]
@@ -48,7 +59,7 @@ class HomeScreen extends StatelessWidget{
 
         bottomNavigationBar: Row(), // 하단
 
-      )
-    );
+      );
+
   }
 }
