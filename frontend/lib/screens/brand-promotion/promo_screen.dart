@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:frontend/screens/brand-promotion/search_promotion.dart';
 
 class PromoScreen extends StatefulWidget {
@@ -29,9 +30,9 @@ class _PromoScreenState extends State<PromoScreen> {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 13),
+            Expanded(child: SvgPicture.asset(image, height: 35)),
             Text(
               label,
               style: TextStyle(
@@ -60,11 +61,11 @@ class _PromoScreenState extends State<PromoScreen> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      _buildMenuItem(0, "피자", ""),
-                      _buildMenuItem(1, "햄버거", ""),
-                      _buildMenuItem(2, "카페", ""),
-                      _buildMenuItem(3, "떡볶이", ""),
-                      _buildMenuItem(4, "편의점", ""),
+                      _buildMenuItem(0, "피자", "assets/images/menu_pizza.svg"),
+                      _buildMenuItem(1,"햄버거", "assets/images/menu_hamburger.svg"),
+                      _buildMenuItem(2, "카페", "assets/images/menu_cafe.svg"),
+                      _buildMenuItem(3,"떡볶이", "assets/images/menu_tteokbokki.svg"),
+                      _buildMenuItem(4,"편의점", "assets/images/menu_convenienceStore.svg"),
                       _buildMenuItem(5, "기타", ""),
                     ],
                   ),
@@ -75,7 +76,7 @@ class _PromoScreenState extends State<PromoScreen> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-
+                      //FILTER
                     ],
                   ),
                 ),
