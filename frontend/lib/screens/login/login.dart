@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter_svg/svg.dart';
+import 'package:frontend/main_screen.dart';
 import 'package:frontend/screens/home/home_screen.dart';
 import './setting_name.dart';
 
@@ -16,16 +17,17 @@ class Login extends StatelessWidget {
         print("구글 로그인 실행");
       }
 
-      bool isNewUser = true;
+      bool isNewUser = false; //연동할 때 여기 수정하기!!
       if (isNewUser) {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Settingname()),
         );
       } else {
-        Navigator.pushReplacement(
+        Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => MainScreen()),
+          (Route<dynamic> route) => false,
         );
       }
     } catch (error) {
