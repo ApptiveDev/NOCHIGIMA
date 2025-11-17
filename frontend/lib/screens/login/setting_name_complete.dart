@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/main_screen.dart';
+import 'package:frontend/screens/home/home_screen.dart';
 
 class Namecomplete extends StatelessWidget {
   final String nickName;
@@ -14,7 +16,7 @@ class Namecomplete extends StatelessWidget {
           children: [
             Spacer(flex: 2),
             Container(
-              // celebration 사진넣기
+              child: Image.asset("assets/images/celebrate.png"),
               height: 100,
             ),
             SizedBox(height: 37),
@@ -49,7 +51,13 @@ class Namecomplete extends StatelessWidget {
               width: double.infinity,
               height: 60,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainScreen()),
+                      (Route<dynamic> route)  => false,
+                  );
+                },
                 child: Text(
                   "놓치지마 시작하기",
                   style: TextStyle(
