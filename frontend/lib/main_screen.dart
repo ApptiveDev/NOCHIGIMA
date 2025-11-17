@@ -51,10 +51,6 @@ class _MainScreenState extends State<MainScreen>{
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Main screen'),
-      ),
-
       body: IndexedStack(
         index: _selectedIndex,
         children: _pages,
