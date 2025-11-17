@@ -32,11 +32,12 @@ class NavItemWidget extends StatelessWidget{
               assetName,
               width: 20,
               height: 20,
-              colorFilter: ColorFilter.mode(isSelected
-                  ? activeColor : inactiveColor,
+              colorFilter: ColorFilter.mode(
+                  isSelected ? activeColor : inactiveColor,
                   BlendMode.srcIn),
             ),
 
+          const SizedBox(height: 6),
           Text(
               label,
               style:TextStyle(
@@ -44,7 +45,6 @@ class NavItemWidget extends StatelessWidget{
                     ? activeColor : inactiveColor, fontSize: 12,
               ),
           ),
-
 
           ],
         ),

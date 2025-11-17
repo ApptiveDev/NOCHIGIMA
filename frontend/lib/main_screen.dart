@@ -7,6 +7,7 @@ import 'package:frontend/screens/mypage/mypage_screen.dart';
 import 'package:frontend/screens/search/search_screen.dart';
 import 'package:frontend/screens/brand-promotion/promo_screen.dart';
 import 'package:frontend/screens/social/social_screen.dart';
+import 'package:frontend/widgets/nav_widget.dart';
 
 class MainScreen extends StatefulWidget{
   const MainScreen({super.key});
@@ -66,10 +67,35 @@ class _MainScreenState extends State<MainScreen>{
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            _buildCustomNavItem(
-              index:0,
+            NavItemWidget(
               assetName: 'assets/images/nav_home.svg',
               label:'홈',
+              isSelected: (_selectedIndex == 0),
+              onTap: () => _onTapped(0),
+            ),
+            NavItemWidget(
+              assetName: 'assets/images/nav_search.svg',
+              label:'검색',
+              isSelected: (_selectedIndex == 1),
+              onTap: () => _onTapped(1),
+            ),
+            NavItemWidget(
+              assetName: 'assets/images/nav_ourtown.svg',
+              label:'우리동네',
+              isSelected: (_selectedIndex == 2),
+              onTap: () => _onTapped(2),
+            ),
+            NavItemWidget(
+              assetName: 'assets/images/nav_social.svg',
+              label:'소셜',
+              isSelected: (_selectedIndex == 3),
+              onTap: () => _onTapped(3),
+            ),
+            NavItemWidget(
+              assetName: 'assets/images/nav_mypage.svg',
+              label:'마이',
+              isSelected: (_selectedIndex == 4),
+              onTap: () => _onTapped(4),
             ),
           ],
         ),
