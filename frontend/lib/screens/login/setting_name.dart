@@ -46,14 +46,25 @@ class _SettingnameState extends State<Settingname> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white, elevation: 0),
+      appBar: AppBar(backgroundColor: Colors.white, elevation: 0,
+        leading: IconButton(
+          icon: Icon(
+            Icons.navigate_before_rounded,
+            color: Colors.black,
+            size: 30,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "닉네임을 입력하세요",
+              "닉네임을 입력해주세요",
               style: TextStyle(
                 color: Colors.grey[800],
                 fontSize: 24,
@@ -87,8 +98,8 @@ class _SettingnameState extends State<Settingname> {
             SizedBox(height: 10),
             Text(
               "2~8자까지 입력할 수 있어요.",
-              style: TextStyle(
-                color: Colors.grey[400],
+              style: TextStyle (
+                color:  _isButtonEnabled ? Colors.grey[400] : Color(0xffFF333F),
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter_svg/svg.dart';
+import 'package:frontend/screens/home/home_screen.dart';
 import './setting_name.dart';
 
 class Login extends StatelessWidget {
@@ -22,10 +23,10 @@ class Login extends StatelessWidget {
           MaterialPageRoute(builder: (context) => Settingname()),
         );
       } else {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => home()),
-        // )
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
       }
     } catch (error) {
       print("$provider 로그인Error : $error");
@@ -42,7 +43,7 @@ class Login extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                child: SvgPicture.asset('assets/images/Logo.svg',width: 150,),
+                child: SvgPicture.asset('assets/images/Logo.svg', width: 150),
               ),
               Text(
                 "세상의 모든 프로모션을 모아 한눈에",
@@ -56,19 +57,10 @@ class Login extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: 60,
-                child: ElevatedButton.icon(
+                child: ElevatedButton(
                   onPressed: () {
                     _handleLogin(context, 'kakao');
                   },
-                  icon: SvgPicture.asset('assets/images/kakao_icon.svg',width: 20,),
-                  label: Text(
-                    "카카오로 시작하기",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFFDE500),
                     disabledBackgroundColor: Color(0xFFFDE500),
@@ -76,6 +68,31 @@ class Login extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
+                    padding: EdgeInsets.zero,
+                  ),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: SvgPicture.asset(
+                            'assets/images/kakao_icon.svg',
+                            width: 20,
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          "카카오로 시작하기",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -84,19 +101,10 @@ class Login extends StatelessWidget {
                 // google로 시작하기 버튼
                 width: double.infinity,
                 height: 60,
-                child: ElevatedButton.icon(
+                child: ElevatedButton(
                   onPressed: () {
                     _handleLogin(context, 'google');
                   },
-                  icon: SvgPicture.asset('assets/images/google_icon.svg', width: 20,),
-                  label: Text(
-                    "Google로 시작하기",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     disabledBackgroundColor: Colors.white,
@@ -105,6 +113,31 @@ class Login extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       side: BorderSide(color: Colors.grey[900]!, width: 1.0),
                     ),
+                    padding: EdgeInsets.zero,
+                  ),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: SvgPicture.asset(
+                            'assets/images/google_icon.svg',
+                            width: 20,
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          "Google로 시작하기",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
