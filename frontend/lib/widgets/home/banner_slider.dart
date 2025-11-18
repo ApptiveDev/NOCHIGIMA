@@ -63,11 +63,31 @@ class _BannerSlider extends State<BannerSlider>{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(item['title']!, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+              Text(item['title']!,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontFamily: "Pretendard",
+                      fontWeight: FontWeight.bold
+                  )
+              ),
               const SizedBox(height: 4),
-              Text(item['subtitle']!, style: const TextStyle(color: Colors.white, fontSize: 14)),
-              const SizedBox(height: 8),
-              Text("판매 기간\n${item['date']!}", style: const TextStyle(color: Colors.white70, fontSize: 12)),
+              Text(
+                  item['subtitle']!,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Pretendard",
+                      fontSize: 16
+                  )
+              ),
+              const SizedBox(height: 50),
+              Text("판매 기간\n${item['date']!}",
+                  style: const TextStyle(
+                      color: Colors.white70,
+                      fontFamily: "Pretendard",
+                      fontSize: 12
+                  )
+              ),
             ],
           ),
         ),

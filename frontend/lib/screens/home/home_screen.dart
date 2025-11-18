@@ -14,21 +14,17 @@ class _HomeScreen extends State<HomeScreen>{
 
   int _currentBannerPage = 0;
   final List<Map<String, String>> bannerItems = [
-
-    // 0번째 슬라이드 배너 데이터
     {
-      "image": "assets/images/banner_burger.jpg",
+      "image": "assets/images/slider_burger.png",
       "title": "골든 에그\n트러플 머쉬룸 출시",
       "subtitle": "가을에 푹-빠질 골든 타임, 신제품 출시",
       "date": "2025.10.06(목) ~ 2026.01.07(수)"
     },
-
-    // 1번째 슬라이드 배너 데이터
     {
-      "image": "assets/images/banner_burger.jpg",
-      "title": "두 번째 배너",
-      "subtitle": "두 번째 배너 설명",
-      "date": "2025.11.01 ~ 2025.12.31"
+      "image": "assets/images/slider_burger.png",
+      "title": "골든 에그\n트러플 머쉬룸 출시",
+      "subtitle": "가을에 푹-빠질 골든 타임, 신제품 출시",
+      "date": "2025.10.06(목) ~ 2026.01.07(수)"
     },
   ];
 
@@ -83,6 +79,7 @@ class _HomeScreen extends State<HomeScreen>{
         body: SingleChildScrollView(
           child: Column(
             children: [
+              Container(height: 10, color: Colors.white),
               BannerSlider(items: bannerItems)
             ],
           ),
