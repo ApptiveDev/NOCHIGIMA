@@ -9,6 +9,40 @@ class PromoScreen extends StatefulWidget {
   State<PromoScreen> createState() => _PromoScreenState();
 }
 
+class FilterButton extends StatelessWidget {
+  final Widget child;
+  final VoidCallback onPressed;
+  final EdgeInsetsGeometry? padding;
+  final Color? borderColor;
+
+  const FilterButton({
+    super.key,
+    required this.child,
+    required this.onPressed,
+    this.padding,
+    this.borderColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          side: BorderSide(color: borderColor ?? Color(0xFF323439), width: 1.0),
+        ),
+        minimumSize: Size.zero,
+        padding: padding ?? EdgeInsets.symmetric(horizontal: 15.0),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+      child: child,
+    );
+  }
+}
+
 class _PromoScreenState extends State<PromoScreen> {
   int _selectedIndex = 0;
 
@@ -51,78 +85,82 @@ class _PromoScreenState extends State<PromoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                Container(
-                  height: 80,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      _buildMenuItem(0, "피자", "assets/images/menu_pizza.svg"),
-                      _buildMenuItem(1,"햄버거", "assets/images/menu_hamburger.svg"),
-                      _buildMenuItem(2, "카페", "assets/images/menu_cafe.svg"),
-                      _buildMenuItem(3,"떡볶이", "assets/images/menu_tteokbokki.svg"),
-                      _buildMenuItem(4,"편의점", "assets/images/menu_convenienceStore.svg"),
-                      _buildMenuItem(5, "기타", ""),
-                    ],
-                  ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 80,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    _buildMenuItem(0, "피자", "assets/images/menu_pizza.svg"),
+                    _buildMenuItem(1,"햄버거","assets/images/menu_hamburger.svg"),
+                    _buildMenuItem(2, "카페", "assets/images/menu_cafe.svg"),
+                    _buildMenuItem(3,"떡볶이","assets/images/menu_tteokbokki.svg"),
+                    _buildMenuItem(4,"편의점","assets/images/menu_convenienceStore.svg"),
+                    _buildMenuItem(5, "기타", ""),
+                  ],
                 ),
-                SizedBox(height: 25),
-                Container(
-                  //filter
-                  height: 40,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      //FILTER
-                      ElevatedButton( // 추천순 button
-                        onPressed: () {},
-                        child: Row(
-                          children: [
-                            Text(
-                              "추천순",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF323439),
-                              ),
-                            ),
-                            SizedBox(width: 5,),
-                            Icon(
-                              Icons.expand_more_rounded,
+              ),
+              SizedBox(height: 25),
+              Container(
+                //filter
+                height: 36,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    //FILTER
+                    FilterButton(
+                      // 추천순 button
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "추천순",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
                               color: Color(0xFF323439),
-                              size: 20,
-                            ),
-                          ],
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            side: BorderSide(
-                              color: Color(0xFF323439),
-                              width: 1.0,
                             ),
                           ),
-                          minimumSize: Size.zero,
-                          padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.0),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
+                          SizedBox(width: 5),
+                          Icon(
+                            Icons.expand_more_rounded,
+                            color: Color(0xFF323439),
+                            size: 20,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(width: 8),
+                    FilterButton(
+                      onPressed: () {},
+                      padding: EdgeInsets.all(8.0),
+                      borderColor: Color(0xFFE2E4EC),
+                      child: Icon(Icons.tune_rounded, color: Color(0xFF323439)),
+                    ),
+                    SizedBox(width: 8),
+                    VerticalDivider(
+                      thickness: 1,
+                      width: 1,
+                      color: Color(0xFFF3F4F8),
+                      indent: 4,
+                      endIndent: 4,
+                    ),
+                  ],
                 ),
-                SizedBox(height: 25),
-                Container(
+              ),
+              SizedBox(height: 25),
+              Expanded(
+                child: Container(
                   //promo view
                   // click promo -> detail page로 넘어가도록
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
