@@ -70,6 +70,7 @@ class _PromoScreenState extends State<PromoScreen> {
                     ],
                   ),
                 ),
+                SizedBox(height: 25),
                 Container(
                   //filter
                   height: 40,
@@ -77,9 +78,45 @@ class _PromoScreenState extends State<PromoScreen> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       //FILTER
+                      ElevatedButton( // 추천순 button
+                        onPressed: () {},
+                        child: Row(
+                          children: [
+                            Text(
+                              "추천순",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF323439),
+                              ),
+                            ),
+                            SizedBox(width: 5,),
+                            Icon(
+                              Icons.expand_more_rounded,
+                              color: Color(0xFF323439),
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            side: BorderSide(
+                              color: Color(0xFF323439),
+                              width: 1.0,
+                            ),
+                          ),
+                          minimumSize: Size.zero,
+                          padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.0),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                      ),
                     ],
                   ),
                 ),
+                SizedBox(height: 25),
                 Container(
                   //promo view
                   // click promo -> detail page로 넘어가도록
