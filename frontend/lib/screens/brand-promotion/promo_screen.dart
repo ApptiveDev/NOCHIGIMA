@@ -223,6 +223,7 @@ class _PromoScreenState extends State<PromoScreen> {
                 fontSize: 16,
                 fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
                 color: isSelected ? Colors.black : Colors.grey[600],
+                fontFamily: "Prentendard",
               ),
             ),
           ],
