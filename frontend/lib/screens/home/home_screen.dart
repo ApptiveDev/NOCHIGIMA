@@ -28,18 +28,6 @@ class _HomeScreen extends State<HomeScreen>{
     },
   ];
 
-  final List<Map<String, String>> categories = [
-    {"label": "신규이벤트", "icon": "assets/images/new_icon.svg"},
-    {"label": "TOP 20", "icon": "assets/images/new_icon.svg"},
-    {"label": "치킨", "icon": "assets/images/new_icon.svg"},
-    {"label": "피자", "icon": "assets/images/new_icon.svg"},
-    {"label": "햄버거", "icon": "assets/images/new_icon.svg"},
-    {"label": "카페", "icon": "assets/images/new_icon.svg"},
-    {"label": "떡볶이", "icon": "assets/images/new_icon.svg"},
-    {"label": "편의점", "icon": "assets/images/new_icon.svg"},
-    {"label": "기타", "icon": "assets/images/new_icon.svg"},
-  ];
-
   final List<Map<String, String>> bookmarks = [
     {"name": "버거킹", "image": "assets/images/logo_burgerking.png", "tags": "햄버거 • 15개 이상 진행"},
     {"name": "맥도날드", "image": "assets/images/logo_mcdonalds.png", "tags": "햄버거 • 7개 진행 중"},
@@ -101,7 +89,7 @@ class _HomeScreen extends State<HomeScreen>{
             children: [
               Container(height: 5, color: Colors.white),
               BannerSlider(items: bannerItems),
-              CategoryGrid(categories: categories),
+              CategoryGrid(),
               MyBookmarks(bookmarks: bookmarks)
             ],
           ),

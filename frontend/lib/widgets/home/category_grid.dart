@@ -3,10 +3,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CategoryGrid extends StatelessWidget {
-  final List<Map<String, String>> categories;
+final List<Map<String, String>> categories = [
+  {"label": "신규이벤트", "icon": "assets/images/menu/menu_newEvent.svg"},
+  {"label": "TOP 20", "icon": "assets/images/menu/menu_top20.svg"},
+  {"label": "치킨", "icon": "assets/images/menu/menu_chicken.svg"},
+  {"label": "피자", "icon": "assets/images/menu/menu_pizza.svg"},
+  {"label": "햄버거", "icon": "assets/images/menu/menu_hamburger.svg"},
+  {"label": "카페", "icon": "assets/images/menu/menu_cafe.svg"},
+  {"label": "떡볶이", "icon": "assets/images/menu/menu_tteokbokki.svg"},
+  {"label": "편의점", "icon": "assets/images/menu/menu_convenienceStore.svg"},
+  {"label": "기타", "icon": "assets/images/menu/menu_convenienceStore.svg"},
+];
 
-  const CategoryGrid({super.key, required this.categories});
+class CategoryGrid extends StatelessWidget {
+  const CategoryGrid({super.key});
 
   @override
   Widget build(BuildContext context) {

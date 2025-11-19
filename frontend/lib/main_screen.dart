@@ -64,31 +64,31 @@ class _MainScreenState extends State<MainScreen>{
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             NavItemWidget(
-              assetName: 'assets/images/nav_home.svg',
+              assetName: 'assets/images/nav/nav_home.svg',
               label:'홈',
               isSelected: (_selectedIndex == 0),
               onTap: () => _onTapped(0),
             ),
             NavItemWidget(
-              assetName: 'assets/images/nav_search.svg',
+              assetName: 'assets/images/nav/nav_search.svg',
               label:'검색',
               isSelected: (_selectedIndex == 1),
               onTap: () => _onTapped(1),
             ),
             NavItemWidget(
-              assetName: 'assets/images/nav_ourtown.svg',
+              assetName: 'assets/images/nav/nav_ourtown.svg',
               label:'우리동네',
               isSelected: (_selectedIndex == 2),
               onTap: () => _onTapped(2),
             ),
             NavItemWidget(
-              assetName: 'assets/images/nav_social.svg',
+              assetName: 'assets/images/nav/nav_social.svg',
               label:'소셜',
               isSelected: (_selectedIndex == 3),
               onTap: () => _onTapped(3),
             ),
             NavItemWidget(
-              assetName: 'assets/images/nav_mypage.svg',
+              assetName: 'assets/images/nav/nav_mypage.svg',
               label:'마이',
               isSelected: (_selectedIndex == 4),
               onTap: () => _onTapped(4),
