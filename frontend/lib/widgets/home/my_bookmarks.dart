@@ -35,9 +35,30 @@ class MyBookmarks extends StatelessWidget{
           ),
         ),
         Container(
-
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: favorites.length,
+            itemBuilder: (context, index){
+              return _buildBookmarksItem(favorites[index]);
+            },
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          ),
         ),
       ],
     );
+  }
+
+  Widget _buildBookmarksItem(Map<String, String> item){
+    return Container(
+      margin: const EdgeInsets.only(right:12.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12.0),
+          )
+        ]
+      )
+    )
   }
 }
