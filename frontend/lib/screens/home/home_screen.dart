@@ -28,18 +28,32 @@ class _HomeScreen extends State<HomeScreen>{
     },
   ];
 
+  final List<Map<String, String>> categories = [
+    {"label": "신규이벤트", "icon": "assets/images/new_icon.svg"},
+    {"label": "TOP 20", "icon": "assets/images/new_icon.svg"},
+    {"label": "치킨", "icon": "assets/images/new_icon.svg"},
+    {"label": "피자", "icon": "assets/images/new_icon.svg"},
+    {"label": "햄버거", "icon": "assets/images/new_icon.svg"},
+    {"label": "카페", "icon": "assets/images/new_icon.svg"},
+    {"label": "떡볶이", "icon": "assets/images/new_icon.svg"},
+    {"label": "편의점", "icon": "assets/images/new_icon.svg"},
+    {"label": "기타", "icon": "assets/images/new_icon.svg"},
+  ];
+
   @override
   Widget build(BuildContext context){
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
+          elevation: 0.0,
           title: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth*0.02),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  child:Row(
+                  child: Row(
                     children: [
                       SvgPicture.asset(
                         'assets/images/appbar_location.svg',
@@ -79,8 +93,9 @@ class _HomeScreen extends State<HomeScreen>{
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(height: 10, color: Colors.white),
-              BannerSlider(items: bannerItems)
+              Container(height: 5, color: Colors.white),
+              BannerSlider(items: bannerItems),
+              CategoryGrid(categories: categories),
             ],
           ),
         ), // 중단
