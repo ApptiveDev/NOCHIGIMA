@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:frontend/screens/brand-promotion/detail_promotion.dart';
 import 'package:frontend/screens/brand-promotion/search_promotion.dart';
 
 class PromoScreen extends StatefulWidget {
@@ -75,7 +76,7 @@ class _PromotionBlockState extends State<PromotionBlock> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPromotion()));},
       child: Container(
         margin: EdgeInsets.only(bottom: 24),
         child: Column(
@@ -89,7 +90,7 @@ class _PromotionBlockState extends State<PromotionBlock> {
                   child: Image.asset(
                     widget.imageURL,
                     width: double.infinity,
-                    height: 150,
+                    height: 180,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -114,15 +115,38 @@ class _PromotionBlockState extends State<PromotionBlock> {
                 fontSize: 18,
               ),
             ),
-            Text(
-              widget.deadline,
-              style: TextStyle(
-                fontWeight: FontWeight.normal,
-                color: Color(0xFF858C9A),
-                fontSize: 12,
-              ),
-            ),
+            Row(
+              children: [
+                Text(
+                  "행사 기간",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF858C9A)
+                  ),
+                ),
+                SizedBox(width: 8,),
+                SizedBox(
+                  height: 12,
+                  child: VerticalDivider(
+                    thickness: 1,
+                    width: 1,
+                    indent: 2,
+                    color: Color(0xFF858C9A),
 
+                  ),
+                ),
+                SizedBox(width: 8,),
+                Text(
+                  widget.deadline,
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xFF858C9A),
+                    fontSize: 12,
+                  ),
+                ),
+              ]
+            )
             // filter
           ],
         ),
@@ -148,7 +172,7 @@ class _PromoScreenState extends State<PromoScreen> {
           border: Border(
             bottom: isSelected
                 ? BorderSide(color: Colors.grey[800]!, width: 2)
-                : BorderSide(color: Colors.grey[200]!, width: 0.5),
+                : BorderSide(color: Color(0xFFF3F4F8)!, width: 1),
           ),
         ),
         child: Column(
