@@ -17,7 +17,7 @@ class Login extends StatelessWidget {
         print("구글 로그인 실행");
       }
 
-      bool isNewUser = false; //연동할 때 여기 수정하기!!
+      bool isNewUser = true; //연동할 때 여기 수정하기!!
       if (isNewUser) {
         Navigator.push(
           context,

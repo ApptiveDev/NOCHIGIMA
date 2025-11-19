@@ -10,6 +10,7 @@ class PromoScreen extends StatefulWidget {
   State<PromoScreen> createState() => _PromoScreenState();
 }
 
+// filter button
 class FilterButton extends StatelessWidget {
   final Widget child;
   final VoidCallback onPressed;
@@ -44,6 +45,7 @@ class FilterButton extends StatelessWidget {
   }
 }
 
+// Promotion block
 class PromotionBlock extends StatefulWidget {
   final String imageURL;
   final String title;
@@ -76,7 +78,12 @@ class _PromotionBlockState extends State<PromotionBlock> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPromotion()));},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DetailPromotion()),
+        );
+      },
       child: Container(
         margin: EdgeInsets.only(bottom: 24),
         child: Column(
@@ -106,7 +113,7 @@ class _PromotionBlockState extends State<PromotionBlock> {
               ],
             ),
             SizedBox(height: 10),
-            // title, detail
+            // title
             Text(
               widget.title,
               style: TextStyle(
@@ -117,15 +124,16 @@ class _PromotionBlockState extends State<PromotionBlock> {
             ),
             Row(
               children: [
+                // deadline
                 Text(
                   "행사 기간",
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF858C9A)
+                    color: Color(0xFF858C9A),
                   ),
                 ),
-                SizedBox(width: 8,),
+                SizedBox(width: 8),
                 SizedBox(
                   height: 12,
                   child: VerticalDivider(
@@ -133,10 +141,9 @@ class _PromotionBlockState extends State<PromotionBlock> {
                     width: 1,
                     indent: 2,
                     color: Color(0xFF858C9A),
-
                   ),
                 ),
-                SizedBox(width: 8,),
+                SizedBox(width: 8),
                 Text(
                   widget.deadline,
                   style: TextStyle(
@@ -145,8 +152,9 @@ class _PromotionBlockState extends State<PromotionBlock> {
                     fontSize: 12,
                   ),
                 ),
-              ]
-            )
+              ],
+            ),
+
             // filter
           ],
         ),
@@ -155,6 +163,36 @@ class _PromotionBlockState extends State<PromotionBlock> {
   }
 }
 
+// floatingSearchButton
+class FloatingSearchButton extends StatelessWidget {
+  const FloatingSearchButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      width: 60,
+
+      child: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SearchPromotion()),
+          );
+        },
+        child: Icon(Icons.search, color: Colors.grey[600], size: 35),
+        shape: CircleBorder(
+          side: BorderSide(color: Colors.grey[200]!, width: 1.0),
+        ),
+        elevation: 4.5,
+        backgroundColor: Colors.white,
+      ),
+    );
+  }
+}
+
+
+//promo-screen build
 class _PromoScreenState extends State<PromoScreen> {
   int _selectedIndex = 0;
 
@@ -208,10 +246,22 @@ class _PromoScreenState extends State<PromoScreen> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     _buildMenuItem(0, "피자", "assets/images/menu_pizza.svg"),
-                    _buildMenuItem(1, "햄버거", "assets/images/menu_hamburger.svg"),
+                    _buildMenuItem(
+                      1,
+                      "햄버거",
+                      "assets/images/menu_hamburger.svg",
+                    ),
                     _buildMenuItem(2, "카페", "assets/images/menu_cafe.svg"),
-                    _buildMenuItem(3, "떡볶이", "assets/images/menu_tteokbokki.svg"),
-                    _buildMenuItem(4, "편의점", "assets/images/menu_convenienceStore.svg"),
+                    _buildMenuItem(
+                      3,
+                      "떡볶이",
+                      "assets/images/menu_tteokbokki.svg",
+                    ),
+                    _buildMenuItem(
+                      4,
+                      "편의점",
+                      "assets/images/menu_convenienceStore.svg",
+                    ),
                     _buildMenuItem(5, "기타", ""),
                   ],
                 ),
@@ -283,7 +333,7 @@ class _PromoScreenState extends State<PromoScreen> {
                     ),
                     PromotionBlock(
                       imageURL: "assets/images/test_Mask group.jpg",
-                      title: "공차데이",
+                      title: "공차데이2",
                       deadline: "2025.10.11",
                     ),
                   ],
@@ -294,26 +344,7 @@ class _PromoScreenState extends State<PromoScreen> {
           ),
         ),
       ),
-      // floating search
-      floatingActionButton: Container(
-        height: 60,
-        width: 60,
-
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SearchPromotion()),
-            );
-          },
-          child: Icon(Icons.search, color: Colors.grey[600], size: 35),
-          shape: CircleBorder(
-            side: BorderSide(color: Colors.grey[200]!, width: 1.0),
-          ),
-          elevation: 4.5,
-          backgroundColor: Colors.white,
-        ),
-      ),
+      floatingActionButton: const FloatingSearchButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
