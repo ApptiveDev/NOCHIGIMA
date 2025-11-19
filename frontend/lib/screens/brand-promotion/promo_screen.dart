@@ -44,23 +44,85 @@ class FilterButton extends StatelessWidget {
 }
 
 class PromotionBlock extends StatefulWidget {
-  
-  const PromotionBlock({super.key});
+  final String imageURL;
+  final String title;
+  final String deadline;
+  final List<String> filters;
+  final bool isLiked;
+
+  const PromotionBlock({
+    super.key,
+    required this.imageURL,
+    required this.title,
+    required this.deadline,
+    this.filters = const [],
+    this.isLiked = false,
+  });
 
   @override
   State<PromotionBlock> createState() => _PromotionBlockState();
 }
 
 class _PromotionBlockState extends State<PromotionBlock> {
+  late bool _isLiked;
+
+  @override
+  void initState() {
+    super.initState();
+    _isLiked = widget.isLiked;
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: () {},
       child: Container(
+        margin: EdgeInsets.only(bottom: 24),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // img + like
+            Stack(
+              children: [
+                // image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    widget.imageURL,
+                    width: double.infinity,
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                // like
+                Positioned(
+                  bottom: 12,
+                  right: 12,
+                  child: Text(
+                    "하트자리",
+                    style: TextStyle(fontWeight: FontWeight.w900),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
             // title, detail
+            Text(
+              widget.title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF323439),
+                fontSize: 18,
+              ),
+            ),
+            Text(
+              widget.deadline,
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                color: Color(0xFF858C9A),
+                fontSize: 12,
+              ),
+            ),
+
             // filter
           ],
         ),
@@ -68,7 +130,6 @@ class _PromotionBlockState extends State<PromotionBlock> {
     );
   }
 }
-
 
 class _PromoScreenState extends State<PromoScreen> {
   int _selectedIndex = 0;
@@ -123,10 +184,10 @@ class _PromoScreenState extends State<PromoScreen> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     _buildMenuItem(0, "피자", "assets/images/menu_pizza.svg"),
-                    _buildMenuItem(1,"햄버거","assets/images/menu_hamburger.svg"),
+                    _buildMenuItem(1, "햄버거", "assets/images/menu_hamburger.svg"),
                     _buildMenuItem(2, "카페", "assets/images/menu_cafe.svg"),
-                    _buildMenuItem(3,"떡볶이","assets/images/menu_tteokbokki.svg"),
-                    _buildMenuItem(4,"편의점","assets/images/menu_convenienceStore.svg"),
+                    _buildMenuItem(3, "떡볶이", "assets/images/menu_tteokbokki.svg"),
+                    _buildMenuItem(4, "편의점", "assets/images/menu_convenienceStore.svg"),
                     _buildMenuItem(5, "기타", ""),
                   ],
                 ),
@@ -183,8 +244,25 @@ class _PromoScreenState extends State<PromoScreen> {
               ),
               SizedBox(height: 25),
               Expanded(
-                child: Container(
+                child: ListView(
                   //promo view
+                  children: [
+                    PromotionBlock(
+                      imageURL: "assets/images/test_Mask group.jpg",
+                      title: "놓치지마 32% 할인",
+                      deadline: "2025.09.12 ~ 2026.05.09",
+                    ),
+                    PromotionBlock(
+                      imageURL: "assets/images/test_Mask group.jpg",
+                      title: "공차데이",
+                      deadline: "2025.10.11",
+                    ),
+                    PromotionBlock(
+                      imageURL: "assets/images/test_Mask group.jpg",
+                      title: "공차데이",
+                      deadline: "2025.10.11",
+                    ),
+                  ],
                   // click promo -> detail page로 넘어가도록
                 ),
               ),
