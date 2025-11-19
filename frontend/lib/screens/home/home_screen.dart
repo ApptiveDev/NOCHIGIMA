@@ -40,6 +40,12 @@ class _HomeScreen extends State<HomeScreen>{
     {"label": "기타", "icon": "assets/images/new_icon.svg"},
   ];
 
+  final List<Map<String, String>> bookmarks = [
+    {"name": "버거킹", "image": "assets/images/logo_burgerking.png", "tags": "햄버거 • 15개 이상 진행"},
+    {"name": "맥도날드", "image": "assets/images/logo_mcdonalds.png", "tags": "햄버거 • 7개 진행 중"},
+    {"name": "신전떡볶이", "image": "assets/images/logo_sinjeon.png", "tags": "떡볶이 • 7개 진행?"},
+  ];
+
   @override
   Widget build(BuildContext context){
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -96,6 +102,7 @@ class _HomeScreen extends State<HomeScreen>{
               Container(height: 5, color: Colors.white),
               BannerSlider(items: bannerItems),
               CategoryGrid(categories: categories),
+              MyBookmarks(bookmarks: bookmarks)
             ],
           ),
         ), // 중단
