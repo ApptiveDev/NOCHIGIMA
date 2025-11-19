@@ -43,6 +43,33 @@ class FilterButton extends StatelessWidget {
   }
 }
 
+class PromotionBlock extends StatefulWidget {
+  
+  const PromotionBlock({super.key});
+
+  @override
+  State<PromotionBlock> createState() => _PromotionBlockState();
+}
+
+class _PromotionBlockState extends State<PromotionBlock> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: (){},
+      child: Container(
+        child: Column(
+          children: [
+            // img + like
+            // title, detail
+            // filter
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
 class _PromoScreenState extends State<PromoScreen> {
   int _selectedIndex = 0;
 
@@ -137,6 +164,7 @@ class _PromoScreenState extends State<PromoScreen> {
                     ),
                     SizedBox(width: 8),
                     FilterButton(
+                      // 필터 button
                       onPressed: () {},
                       padding: EdgeInsets.all(8.0),
                       borderColor: Color(0xFFE2E4EC),
