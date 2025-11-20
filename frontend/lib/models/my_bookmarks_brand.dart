@@ -8,7 +8,7 @@ class BookmarksBrand {
   final String category;
   final String promotionCount;
 
-  FavoriteBrand({
+  BookmarksBrand({
     required this.logoImagePath,
     required this.promotionText,
     required this.promotionColor,

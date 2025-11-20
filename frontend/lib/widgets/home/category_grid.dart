@@ -30,7 +30,7 @@ class CategoryGrid extends StatelessWidget {
 
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 5, // 1개의 행에 보여줄 item 수
-                crossAxisSpacing: 1.0, // 수직 padding
+                crossAxisSpacing: 0.0, // 수직 padding
                 mainAxisSpacing: 0.0, // 수평 Padding
                 childAspectRatio: 0.8, // item의 가로 1, 세로 2의 비율
             ),
@@ -38,12 +38,9 @@ class CategoryGrid extends StatelessWidget {
             itemCount: categories.length,
 
             itemBuilder: (context, index){
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 1.0),
-                child:  _CategoryItem(
+              return _CategoryItem(
                   categories[index]['label']!,
                   categories[index]['icon']!,
-                ),
               );
             }
         )
