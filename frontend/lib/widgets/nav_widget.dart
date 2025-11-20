@@ -41,8 +41,6 @@ class NavItemWidget extends StatelessWidget{
           Text(
               label,
               style:TextStyle(
-                fontFamily: "Pretendard",
-                fontWeight: FontWeight.w500,
                 color: isSelected
                     ? activeColor : inactiveColor, fontSize: 12,
               ),

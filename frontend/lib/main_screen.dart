@@ -51,6 +51,10 @@ class _MainScreenState extends State<MainScreen>{
     }
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Main screen'),
+      ),
+
       body: IndexedStack(
         index: _selectedIndex,
         children: _pages,
@@ -96,6 +100,22 @@ class _MainScreenState extends State<MainScreen>{
           ],
         ),
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //     backgroundColor: Colors.white,
+      //     type: BottomNavigationBarType.fixed,
+      //     currentIndex: _selectedIndex,
+      //     onTap: _onTapped,
+      //
+      //     selectedItemColor: AppColors.nochigimaColor,
+      //     unselectedItemColor: Colors.grey[300],
+      //     items: <BottomNavigationBarItem>[
+      //       svgItem('assets/images/nav_home.svg', '홈', 0),
+      //       svgItem('assets/images/nav_search.svg', '검색', 1),
+      //       svgItem('assets/images/nav_ourtown.svg', '우리동네', 2),
+      //       svgItem('assets/images/nav_social.svg', '소셜', 3),
+      //       svgItem('assets/images/nav_mypage.svg', '마이', 4),
+      //     ],
+      // ),
     );
   }
 }
