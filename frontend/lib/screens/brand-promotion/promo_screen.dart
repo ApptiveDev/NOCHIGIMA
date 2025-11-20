@@ -245,22 +245,22 @@ class _PromoScreenState extends State<PromoScreen> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    _buildMenuItem(0, "피자", "assets/images/menu_pizza.svg"),
+                    _buildMenuItem(0, "피자", "assets/images/menu/menu_pizza.svg"),
                     _buildMenuItem(
                       1,
                       "햄버거",
-                      "assets/images/menu_hamburger.svg",
+                      "assets/images/menu/menu_hamburger.svg",
                     ),
-                    _buildMenuItem(2, "카페", "assets/images/menu_cafe.svg"),
+                    _buildMenuItem(2, "카페", "assets/images/menu/menu_cafe.svg"),
                     _buildMenuItem(
                       3,
                       "떡볶이",
-                      "assets/images/menu_tteokbokki.svg",
+                      "assets/images/menu/menu_tteokbokki.svg",
                     ),
                     _buildMenuItem(
                       4,
                       "편의점",
-                      "assets/images/menu_convenienceStore.svg",
+                      "assets/images/menu/menu_convenienceStore.svg",
                     ),
                     _buildMenuItem(5, "기타", ""),
                   ],
