@@ -65,20 +65,17 @@ class MyBookmarks extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 190.0, // 높이 고정 필수
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row( // ListView.builder 대신 Row 사용
-              children: List.generate(bookmarkBrands.length, (index) {
-                return Padding(
-                  padding: EdgeInsets.only(
-                    left: index == 0 ? 16.0 : 8.0,
-                    right: index == bookmarkBrands.length - 1 ? 16.0 : 8.0,
-                  ),
-                  child: BookmarksCard(brand: bookmarkBrands[index]),
-                );
-              }),
-            ),
+          height: 190,
+          child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              primary: false,
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              itemBuilder: (context, index){
+                return BookmarksCard(brand: bookmarkBrands[index]);
+              },
+              separatorBuilder: (_,_) => const SizedBox(width: 8.0,),
+              itemCount: bookmarkBrands.length,
           ),
         ),
         const SizedBox(height: 24),
