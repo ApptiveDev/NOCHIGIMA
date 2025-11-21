@@ -32,12 +32,10 @@ final List<BookmarksBrand> bookmarkBrands = [
 ];
 
 class MyBookmarks extends StatelessWidget {
-  const MyBookmarks({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.all(16.0),
