@@ -3,16 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-final List<Map<String, String>> categories = [
-  {"label": "신규이벤트", "icon": "assets/images/menu/menu_newEvent.svg"},
-  {"label": "TOP 20", "icon": "assets/images/menu/menu_top20.svg"},
-  {"label": "치킨", "icon": "assets/images/menu/menu_chicken.svg"},
-  {"label": "피자", "icon": "assets/images/menu/menu_pizza.svg"},
-  {"label": "햄버거", "icon": "assets/images/menu/menu_hamburger.svg"},
-  {"label": "카페", "icon": "assets/images/menu/menu_cafe.svg"},
-  {"label": "떡볶이", "icon": "assets/images/menu/menu_tteokbokki.svg"},
-  {"label": "편의점", "icon": "assets/images/menu/menu_convenienceStore.svg"},
-  {"label": "기타", "icon": "assets/images/menu/menu_convenienceStore.svg"},
+final List<Map<String, dynamic>> categories = [
+  {"label": "신규이벤트", "icon": "assets/images/menu/menu_newEvent.svg", "color":  const Color(0xFFFFEDED)},
+  {"label": "TOP 20", "icon": "assets/images/menu/menu_top20.svg", "color": const Color(0xFFFFEDED)},
+  {"label": "치킨", "icon": "assets/images/menu/menu_chicken.svg", "color": const Color(0xFFFDF5E8)},
+  {"label": "피자", "icon": "assets/images/menu/menu_pizza.svg", "color": const Color(0xFFFDF5E8)},
+  {"label": "햄버거", "icon": "assets/images/menu/menu_hamburger.svg", "color": const Color(0xFFFDF5E8)},
+  {"label": "카페", "icon": "assets/images/menu/menu_cafe.svg", "color": const Color(0xFFFFEDED)},
+  {"label": "떡볶이", "icon": "assets/images/menu/menu_tteokbokki.svg", "color": const Color(0xFFFDF5E8)},
+  {"label": "편의점", "icon": "assets/images/menu/menu_convenienceStore.svg", "color": const Color(0xFFF6EEFF)},
+  {"label": "기타", "icon": "", "color": const Color(0xFFF7F7F7)},
 ];
 
 class CategoryGrid extends StatelessWidget {
@@ -21,8 +21,8 @@ class CategoryGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
+        
 
         child: GridView.builder(
             physics: const NeverScrollableScrollPhysics(),
@@ -30,7 +30,7 @@ class CategoryGrid extends StatelessWidget {
 
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 5, // 1개의 행에 보여줄 item 수
-                crossAxisSpacing: 1.0, // 수직 padding
+                crossAxisSpacing: 0.0, // 수직 padding
                 mainAxisSpacing: 0.0, // 수평 Padding
                 childAspectRatio: 0.8, // item의 가로 1, 세로 2의 비율
             ),
@@ -38,19 +38,17 @@ class CategoryGrid extends StatelessWidget {
             itemCount: categories.length,
 
             itemBuilder: (context, index){
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 1.0),
-                child:  _CategoryItem(
-                  categories[index]['label']!,
-                  categories[index]['icon']!,
-                ),
+              return _CategoryItem(
+                  categories[index]['label'] as String,
+                  categories[index]['icon']! as String,
+                  categories[index]['color'] as Color,
               );
             }
         )
     );
   }
 
-  Widget _CategoryItem(String label, String SvgPath){
+  Widget _CategoryItem(String label, String SvgPath, Color color){
     return InkWell(
       onTap: () {
 
@@ -61,7 +59,7 @@ class CategoryGrid extends StatelessWidget {
           width: 54,
           height: 54,
           decoration: BoxDecoration(
-            color: Color(0xFFFFEDED),
+            color: color,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Center(
