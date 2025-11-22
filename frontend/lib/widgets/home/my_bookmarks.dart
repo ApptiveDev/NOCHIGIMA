@@ -2,28 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:frontend/core/app_colors.dart';
 import 'package:frontend/models/my_bookmarks_brand.dart';
 import 'package:frontend/widgets/home/bookmarks_card.dart';
+import 'package:frontend/screens/mypage/my_bookmarks_screen.dart';
 
 final List<BookmarksBrand> bookmarkBrands = [
   BookmarksBrand(
-    logoImagePath: 'assets/images/logo_burgerking.png',
+    logoImagePath: 'assets/images/logo_burgerking.svg',
     promotionText: '할인 프로모션 진행중',
-    promotionColor: Colors.grey.shade700,
+    promotionColor: Color(0xFFF5EBDC),
     brandName: '버거킹',
     category: '햄버거',
     promotionCount: '15개 이상 진행',
   ),
   BookmarksBrand(
-    logoImagePath: 'assets/images/logo_burgerking.png',
+    logoImagePath: 'assets/images/logo_burgerking.svg',
     promotionText: '신메뉴 출시',
-    promotionColor: const Color.fromARGB(255, 150, 40, 37), // 맥도날드 붉은색
+    promotionColor: Color(0xFFE30613), // 맥도날드 붉은색
     brandName: '맥도날드',
     category: '햄버거',
     promotionCount: '프로모션 없음',
   ),
   BookmarksBrand(
-    logoImagePath: 'assets/images/logo_burgerking.png',
+    logoImagePath: 'assets/images/logo_burgerking.svg',
     promotionText: '할인 프로모션 진행중',
-    promotionColor: Colors.grey.shade700,
+    promotionColor: Color(0xFF008250),
+    brandName: '신전떡볶이',
+    category: '떡볶이',
+    promotionCount: '7개 진행',
+  ),
+  BookmarksBrand(
+    logoImagePath: 'assets/images/logo_burgerking.svg',
+    promotionText: '할인 프로모션 진행중',
+    promotionColor: Color(0xFF008250),
+    brandName: '신전떡볶이',
+    category: '떡볶이',
+    promotionCount: '7개 진행',
+  ),
+  BookmarksBrand(
+    logoImagePath: 'assets/images/logo_burgerking.svg',
+    promotionText: '할인 프로모션 진행중',
+    promotionColor: Color(0xFF008250),
     brandName: '신전떡볶이',
     category: '떡볶이',
     promotionCount: '7개 진행',
@@ -47,36 +64,51 @@ class MyBookmarks extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   fontFamily: "Pretendard",
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              Text(
-                '전체보기 >',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: "Pretendard",
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.nochigimaColor,
+
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyBookmarksScreen(),
+                  ),
+                  );
+                },
+                child: Row(
+                  children: [
+                    const Text(
+                      '전체보기 >',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Pretendard",
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.nochigimaColor,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              )
             ],
           ),
         ),
         SizedBox(
-          height: 190,
+          height: 200,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               primary: false,
               shrinkWrap: true,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               itemBuilder: (context, index){
                 return BookmarksCard(brand: bookmarkBrands[index]);
               },
-              separatorBuilder: (_,_) => const SizedBox(width: 8.0,),
+              separatorBuilder: (_,_) => const SizedBox(width: 18.0),
               itemCount: bookmarkBrands.length,
           ),
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 12),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/my_bookmarks_brand.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BookmarksCard extends StatelessWidget{
   final BookmarksBrand brand;
@@ -8,7 +9,8 @@ class BookmarksCard extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     const double cardWidth = 120;
-    const double cardHeight = 170;
+    const double logoAreaHeight = 120;
+    const double logoBoxSize = 72;
     return InkWell(
       onTap: (){
 
@@ -19,18 +21,28 @@ class BookmarksCard extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 120,
+              height: logoAreaHeight,
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
+                color: brand.promotionColor,
               ),
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(
-                    brand.logoImagePath,
-                    fit: BoxFit.cover,
+                  Center(
+                    child: Container(
+                      width: logoBoxSize,
+                      height: logoBoxSize,
+
+                      child: SvgPicture.asset(
+                        brand.logoImagePath,
+                        fit: BoxFit.contain,
+                      ),
+
+                    ),
                   ),
+
 
                   Positioned(
                     bottom: 0,
@@ -38,7 +50,7 @@ class BookmarksCard extends StatelessWidget{
                     right: 0,
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      color: Colors.white,
+                      color: Color(0xFF323439).withOpacity(0.4),
                       alignment: Alignment.center,
                       child: Text(
                         brand.promotionText,
@@ -46,6 +58,7 @@ class BookmarksCard extends StatelessWidget{
                           fontFamily: "Pretendard",
                           fontSize: 12.0,
                           fontWeight: FontWeight.w400,
+                          color: Colors.white,
                         ),
                       ),
                     ),
