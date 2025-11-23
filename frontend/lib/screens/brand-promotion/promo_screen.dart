@@ -2,206 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:frontend/screens/brand-promotion/detail_promotion.dart';
 import 'package:frontend/screens/brand-promotion/search_promotion.dart';
+import 'package:frontend/widgets/brand-promotion/brand_promotion_widgets.dart';
+import 'package:frontend/models/menu_category.dart';
 
 class PromoScreen extends StatefulWidget {
-  const PromoScreen({super.key});
+  final MenuCategory initialCategory;
+
+  const PromoScreen({
+    super.key,
+    this.initialCategory = MenuCategory.pizza,
+  });
 
   @override
   State<PromoScreen> createState() => _PromoScreenState();
 }
 
-// filter button
-class FilterButton extends StatelessWidget {
-  final Widget child;
-  final VoidCallback onPressed;
-  final EdgeInsetsGeometry? padding;
-  final Color? borderColor;
-
-  const FilterButton({
-    super.key,
-    required this.child,
-    required this.onPressed,
-    this.padding,
-    this.borderColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          side: BorderSide(color: borderColor ?? Color(0xFF323439), width: 1.0),
-        ),
-        minimumSize: Size.zero,
-        padding: padding ?? EdgeInsets.symmetric(horizontal: 15.0),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      ),
-      child: child,
-    );
-  }
-}
-
-// Promotion block
-class PromotionBlock extends StatefulWidget {
-  final String imageURL;
-  final String title;
-  final String deadline;
-  final List<String> filters;
-  final bool isLiked;
-
-  const PromotionBlock({
-    super.key,
-    required this.imageURL,
-    required this.title,
-    required this.deadline,
-    this.filters = const [],
-    this.isLiked = false,
-  });
-
-  @override
-  State<PromotionBlock> createState() => _PromotionBlockState();
-}
-
-class _PromotionBlockState extends State<PromotionBlock> {
-  late bool _isLiked;
-
-  @override
-  void initState() {
-    super.initState();
-    _isLiked = widget.isLiked;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => DetailPromotion()),
-        );
-      },
-      child: Container(
-        margin: EdgeInsets.only(bottom: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                // image
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    widget.imageURL,
-                    width: double.infinity,
-                    height: 180,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                // like
-                Positioned(
-                  bottom: 12,
-                  right: 12,
-                  child: Text(
-                    "하트자리",
-                    style: TextStyle(fontWeight: FontWeight.w900),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            // title
-            Text(
-              widget.title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF323439),
-                fontSize: 18,
-              ),
-            ),
-            Row(
-              children: [
-                // deadline
-                Text(
-                  "행사 기간",
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF858C9A),
-                  ),
-                ),
-                SizedBox(width: 8),
-                SizedBox(
-                  height: 12,
-                  child: VerticalDivider(
-                    thickness: 1,
-                    width: 1,
-                    indent: 2,
-                    color: Color(0xFF858C9A),
-                  ),
-                ),
-                SizedBox(width: 8),
-                Text(
-                  widget.deadline,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xFF858C9A),
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-
-            // filter
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// floatingSearchButton
-class FloatingSearchButton extends StatelessWidget {
-  const FloatingSearchButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: 60,
-
-      child: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SearchPromotion()),
-          );
-        },
-        child: Icon(Icons.search, color: Colors.grey[600], size: 35),
-        shape: CircleBorder(
-          side: BorderSide(color: Colors.grey[200]!, width: 1.0),
-        ),
-        elevation: 4.5,
-        backgroundColor: Colors.white,
-      ),
-    );
-  }
-}
-
-
 //promo-screen build
 class _PromoScreenState extends State<PromoScreen> {
-  int _selectedIndex = 0;
+  late MenuCategory _selectedCategory;
 
-  Widget _buildMenuItem(int index, String label, String image) {
-    bool isSelected = (_selectedIndex == index);
+  @override
+  void initState(){
+    super.initState();
+    _selectedCategory = widget.initialCategory;
+  }
+
+  Widget _buildMenuItem(MenuCategory category) {
+    bool isSelected = (_selectedCategory == category);
+
     return InkWell(
       onTap: () {
         setState(() {
-          _selectedIndex = index;
+          _selectedCategory = category;
         });
       },
       child: Container(
@@ -216,12 +48,12 @@ class _PromoScreenState extends State<PromoScreen> {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: SvgPicture.asset(image, height: 35)),
+            Expanded(child: SvgPicture.asset(category.imagePath, height: 35)),
             Text(
-              label,
+              category.label,
               style: TextStyle(
                 fontSize: 16,
-                fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
+                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                 color: isSelected ? Colors.black : Colors.grey[600],
                 fontFamily: "Prentendard",
               ),
@@ -245,26 +77,9 @@ class _PromoScreenState extends State<PromoScreen> {
                 height: 80,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    _buildMenuItem(0, "피자", "assets/images/menu/menu_pizza.svg"),
-                    _buildMenuItem(
-                      1,
-                      "햄버거",
-                      "assets/images/menu/menu_hamburger.svg",
-                    ),
-                    _buildMenuItem(2, "카페", "assets/images/menu/menu_cafe.svg"),
-                    _buildMenuItem(
-                      3,
-                      "떡볶이",
-                      "assets/images/menu/menu_tteokbokki.svg",
-                    ),
-                    _buildMenuItem(
-                      4,
-                      "편의점",
-                      "assets/images/menu/menu_convenienceStore.svg",
-                    ),
-                    _buildMenuItem(5, "기타", ""),
-                  ],
+                  children: MenuCategory.values.map((category){
+                    return _buildMenuItem(category);
+                  }).toList(),
                 ),
               ),
               SizedBox(height: 25),
@@ -285,8 +100,9 @@ class _PromoScreenState extends State<PromoScreen> {
                             "추천순",
                             style: TextStyle(
                               fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w700,
                               color: Color(0xFF323439),
+                              fontFamily: "Pretendard",
                             ),
                           ),
                           SizedBox(width: 5),
