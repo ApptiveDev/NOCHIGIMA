@@ -28,17 +28,11 @@ class _HomeScreen extends State<HomeScreen>{
     },
   ];
 
-  final List<Map<String, String>> bookmarks = [
-    {"name": "버거킹", "image": "assets/images/logo_burgerking.png", "tags": "햄버거 • 15개 이상 진행"},
-    {"name": "맥도날드", "image": "assets/images/logo_mcdonalds.png", "tags": "햄버거 • 7개 진행 중"},
-    {"name": "신전떡볶이", "image": "assets/images/logo_sinjeon.png", "tags": "떡볶이 • 7개 진행?"},
-  ];
-
   @override
   Widget build(BuildContext context){
     final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
           title: Padding(
@@ -47,27 +41,27 @@ class _HomeScreen extends State<HomeScreen>{
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/appbar_location.svg',
-                        width: 15,
-                        height: 18,
-                        colorFilter: ColorFilter.mode(AppColors.nochigimaColor, BlendMode.srcIn),
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        '부산대학로 63번길 2',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontFamily: "Pretendard",
-                          fontWeight: FontWeight.w600,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/images/appbar_location.svg',
+                          width: 15,
+                          height: 18,
+                          colorFilter: ColorFilter.mode(AppColors.nochigimaColor, BlendMode.srcIn),
                         ),
-                      ),
-                      Icon(Icons.keyboard_arrow_down, color: Colors.black),
-                    ],
-                  )
+                        SizedBox(width: 8),
+                        Text(
+                          '부산대학로 63번길 2',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: "Pretendard",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Icon(Icons.keyboard_arrow_down, color: Colors.black),
+                      ],
+                    )
                 ),
                 IconButton(
                     onPressed: () {},
@@ -81,23 +75,23 @@ class _HomeScreen extends State<HomeScreen>{
               ],
             ),
           ),
-            actions:[]
-        ), // 상단
+          actions:[]
+      ), // 상단
 
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(height: 5, color: Colors.white),
-              BannerSlider(items: bannerItems),
-              CategoryGrid(),
-              MyBookmarks(bookmarks: bookmarks)
-            ],
-          ),
-        ), // 중단
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(height: 5, color: Colors.white),
+            BannerSlider(items: bannerItems),
+            CategoryGrid(),
+            MyBookmarks(),
+          ],
+        ),
+      ), // 중단
 
-        bottomNavigationBar: Row(), // 하단
+      bottomNavigationBar: Row(), // 하단
 
-      );
+    );
 
   }
 }
