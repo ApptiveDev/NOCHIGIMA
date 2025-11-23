@@ -108,7 +108,6 @@ class _PromotionBlockState extends State<PromotionBlock> {
                 ),
               ],
             ),
-
             // filter
           ],
         ),

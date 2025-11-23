@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/main_screen.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:frontend/screens/home/home_screen.dart';
 
 class Namecomplete extends StatelessWidget {
@@ -16,7 +17,7 @@ class Namecomplete extends StatelessWidget {
           children: [
             Spacer(flex: 2),
             Container(
-              child: Image.asset("assets/images/celebrate.png"),
+              child: SvgPicture.asset("assets/images/celebrate.svg"),
               height: 100,
             ),
             SizedBox(height: 37),

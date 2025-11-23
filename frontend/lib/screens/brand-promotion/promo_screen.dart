@@ -53,7 +53,7 @@ class _PromoScreenState extends State<PromoScreen> {
               category.label,
               style: TextStyle(
                 fontSize: 16,
-                fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
+                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                 color: isSelected ? Colors.black : Colors.grey[600],
                 fontFamily: "Prentendard",
               ),
@@ -100,8 +100,9 @@ class _PromoScreenState extends State<PromoScreen> {
                             "추천순",
                             style: TextStyle(
                               fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w700,
                               color: Color(0xFF323439),
+                              fontFamily: "Pretendard",
                             ),
                           ),
                           SizedBox(width: 5),
