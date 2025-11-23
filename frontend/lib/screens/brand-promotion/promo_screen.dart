@@ -3,9 +3,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:frontend/screens/brand-promotion/detail_promotion.dart';
 import 'package:frontend/screens/brand-promotion/search_promotion.dart';
 import 'package:frontend/widgets/brand-promotion/brand_promotion_widgets.dart';
+import 'package:frontend/models/menu_category.dart';
 
 class PromoScreen extends StatefulWidget {
-  const PromoScreen({super.key});
+  final MenuCategory initialCategory;
+
+  const PromoScreen({
+    super.key,
+    this.initialCategory = MenuCategory.pizza,
+  });
 
   @override
   State<PromoScreen> createState() => _PromoScreenState();
@@ -13,14 +19,21 @@ class PromoScreen extends StatefulWidget {
 
 //promo-screen build
 class _PromoScreenState extends State<PromoScreen> {
-  int _selectedIndex = 0;
+  late MenuCategory _selectedCategory;
 
-  Widget _buildMenuItem(int index, String label, String image) {
-    bool isSelected = (_selectedIndex == index);
+  @override
+  void initState(){
+    super.initState();
+    _selectedCategory = widget.initialCategory;
+  }
+
+  Widget _buildMenuItem(MenuCategory category) {
+    bool isSelected = (_selectedCategory == category);
+
     return InkWell(
       onTap: () {
         setState(() {
-          _selectedIndex = index;
+          _selectedCategory = category;
         });
       },
       child: Container(
@@ -35,9 +48,9 @@ class _PromoScreenState extends State<PromoScreen> {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: SvgPicture.asset(image, height: 35)),
+            Expanded(child: SvgPicture.asset(category.imagePath, height: 35)),
             Text(
-              label,
+              category.label,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
@@ -64,14 +77,9 @@ class _PromoScreenState extends State<PromoScreen> {
                 height: 80,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    _buildMenuItem(0, "피자", "assets/images/menu/menu_pizza.svg"),
-                    _buildMenuItem(1, "햄버거", "assets/images/menu/menu_hamburger.svg"),
-                    _buildMenuItem(2, "카페", "assets/images/menu/menu_cafe.svg"),
-                    _buildMenuItem(3, "떡볶이", "assets/images/menu/menu_tteokbokki.svg"),
-                    _buildMenuItem(4, "편의점", "assets/images/menu/menu_convenienceStore.svg"),
-                    _buildMenuItem(5, "기타", ""),
-                  ],
+                  children: MenuCategory.values.map((category){
+                    return _buildMenuItem(category);
+                  }).toList(),
                 ),
               ),
               SizedBox(height: 25),
