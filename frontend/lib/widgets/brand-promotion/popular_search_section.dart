@@ -16,19 +16,39 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
   @override
   void initState() {
     super.initState();
-    //_fetchRankingData();
+    _fetchRankingData();
   }
 
-  @override
-  // void _fetchRankingData(){
-  //
-  // }
+  @override // 백엔드 api 연결
+  Future<void> _fetchRankingData() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    if (mounted) {
+      setState(() {
+        _updateTime = "13:00 업데이트";
+        _rankings = [
+          "버거킹",
+          "맥도날드",
+          "롯데리아",
+          "순위",
+          "순위",
+          "버거킹",
+          "맥도날드",
+          "롯데리아",
+          "순위",
+          "순위",
+        ];
+        _isLoading = false;
+      });
+    }
+  }
 
   Widget _buildRankingItem(int rank, String keyword) {
-    Color rankColor = (rank >= 3) ? AppColors.nochigimaColor : Color(0xFF323439);
+    Color rankColor = (rank <= 3)
+        ? AppColors.nochigimaColor
+        : Color(0xFF323439);
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 22.0),
+      padding: EdgeInsets.symmetric(vertical: 11.0),
       child: Row(
         children: [
           SizedBox(
@@ -37,15 +57,13 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
               "$rank",
               style: TextStyle(
                 fontFamily: "Pretendard",
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w800,
                 fontSize: 16,
                 color: rankColor,
               ),
             ),
           ),
-          SizedBox(
-            width: 8
-          ),
+          SizedBox(width: 4),
           Text(
             keyword,
             style: TextStyle(
@@ -54,7 +72,7 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
               fontSize: 16,
               color: Color(0xFF323439),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -93,23 +111,32 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
         ),
         SizedBox(height: 30),
         // 2. ranking list
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                children: List.generate(5, (index) {
-                  return _buildRankingItem(index + 1, _rankings[index]);
-                }),
-              ),
+        if (_isLoading)
+          const Center(child: CircularProgressIndicator())
+        else
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                  Expanded(
+                    child: Column(
+                      children: List.generate(5, (index) {
+                        return _buildRankingItem(index + 1, _rankings[index]);
+                      }),
+                    ),
+                  ),
+                  SizedBox(width: 30,),
+                  Expanded(
+                    child: Column(
+                      children: List.generate(5, (index) {
+                        return _buildRankingItem(index + 6, _rankings[index + 5]);
+                      }),
+                    ),
+                  ),
+              ],
             ),
-            Expanded(child: Column(
-              children: List.generate(5, (index){
-                return _buildRankingItem(index + 6, _rankings[index+5]);
-              }),
-            )),
-          ],
-        ),
+          ),
       ],
     );
   }
