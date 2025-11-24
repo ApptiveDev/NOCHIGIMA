@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/core/app_colors.dart';
+
 // Promotion block
 class PromotionBlock extends StatefulWidget {
   final String imageURL;
@@ -59,10 +61,25 @@ class _PromotionBlockState extends State<PromotionBlock> {
                 Positioned(
                   bottom: 12,
                   right: 12,
-                  child: Text(
-                    "하트자리",
-                    style: TextStyle(fontWeight: FontWeight.w900),
-                  ),
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        _isLiked = !_isLiked;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black.withOpacity(0.6),
+                      ),
+                      child: Icon(
+                        _isLiked ? Icons.favorite : Icons.favorite_border,
+                        color: _isLiked ? AppColors.nochigimaColor : Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  )
                 ),
               ],
             ),
