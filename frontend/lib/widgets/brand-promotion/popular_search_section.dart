@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/core/app_colors.dart';
 
 class PopularSearchSection extends StatefulWidget {
   const PopularSearchSection({super.key});
@@ -23,6 +24,42 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
   //
   // }
 
+  Widget _buildRankingItem(int rank, String keyword) {
+    Color rankColor = (rank >= 3) ? AppColors.nochigimaColor : Color(0xFF323439);
+
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 22.0),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 24,
+            child: Text(
+              "$rank",
+              style: TextStyle(
+                fontFamily: "Pretendard",
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
+                color: rankColor,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 8
+          ),
+          Text(
+            keyword,
+            style: TextStyle(
+              fontFamily: "Pretendard",
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+              color: Color(0xFF323439),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,7 +81,7 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
               ),
             ),
             Text(
-              "13:00 업데이트", // _updateTime으로 수정
+              _updateTime,
               style: TextStyle(
                 fontFamily: "Pretendard",
                 fontWeight: FontWeight.normal,
@@ -54,8 +91,25 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
             ),
           ],
         ),
+        SizedBox(height: 30),
         // 2. ranking list
-
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                children: List.generate(5, (index) {
+                  return _buildRankingItem(index + 1, _rankings[index]);
+                }),
+              ),
+            ),
+            Expanded(child: Column(
+              children: List.generate(5, (index){
+                return _buildRankingItem(index + 6, _rankings[index+5]);
+              }),
+            )),
+          ],
+        ),
       ],
     );
   }
