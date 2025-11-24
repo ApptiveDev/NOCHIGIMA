@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/widgets/brand-promotion/popular_search_section.dart';
 
 class SearchPromotion extends StatefulWidget {
   const SearchPromotion({super.key});
@@ -31,6 +32,7 @@ class _SearchPromotionState extends State<SearchPromotion> {
           hintStyle: MaterialStateProperty.all(
             TextStyle(
               color: Colors.grey[400],
+              fontFamily: "Pretendard",
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
@@ -52,36 +54,7 @@ class _SearchPromotionState extends State<SearchPromotion> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-
-                children: [
-                  Text(
-                    "인기 검색어",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Text(
-                    "13:00 업데이트",
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 12,
-                      color: Color(0xffAFB8C1),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              // 인기 순위
-              
-            ),
+            PopularSearchSection(),
           ],
         ),
       ),
