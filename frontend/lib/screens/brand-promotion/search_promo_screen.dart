@@ -29,7 +29,7 @@ class _SearchPromotionState extends State<SearchPromotion> {
         ),
         title: SearchBar(
           hintText: "매장명, 프로모션 검색",
-          hintStyle: WidgetStateProperty.all(
+          hintStyle: MaterialStateProperty.all(
             TextStyle(
               color: Colors.grey[400],
               fontFamily: "Pretendard",
@@ -37,13 +37,13 @@ class _SearchPromotionState extends State<SearchPromotion> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          backgroundColor: WidgetStateProperty.all<Color>(Colors.grey[050]!),
-          elevation: WidgetStateProperty.all<double>(0.0),
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[050]!),
+          elevation: MaterialStateProperty.all<double>(0.0),
           trailing: [
             IconButton(onPressed: () {}, icon: Icon(Icons.cancel)),
             IconButton(onPressed: () {}, icon: Icon(Icons.search)),
           ],
-          shape: WidgetStateProperty.all(
+          shape: MaterialStateProperty.all(
             ContinuousRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
           constraints: BoxConstraints(maxHeight: 60),
