@@ -24,7 +24,7 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
     await Future.delayed(const Duration(milliseconds: 500));
     if (mounted) {
       setState(() {
-        _updateTime = "13:00 업데이트";
+        _updateTime = "13:00";
         _rankings = [
           "버거킹",
           "맥도날드",
@@ -99,7 +99,7 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
               ),
             ),
             Text(
-              _updateTime,
+              "$_updateTime 업데이트",
               style: TextStyle(
                 fontFamily: "Pretendard",
                 fontWeight: FontWeight.normal,
