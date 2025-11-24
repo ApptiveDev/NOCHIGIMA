@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:frontend/screens/brand-promotion/detail_promotion.dart';
-import 'package:frontend/screens/brand-promotion/search_promotion.dart';
+import 'package:frontend/screens/brand-promotion/detail_promo_screen.dart';
+import 'package:frontend/screens/brand-promotion/search_promo_screen.dart';
 import 'package:frontend/widgets/brand-promotion/brand_promotion_widgets.dart';
 import 'package:frontend/models/menu_category.dart';
 
@@ -161,7 +161,14 @@ class _PromoScreenState extends State<PromoScreen> {
           ),
         ),
       ),
-      floatingActionButton: const FloatingSearchButton(),
+      floatingActionButton: FloatingSearchButton(
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SearchPromotion()),
+          );
+        },
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
