@@ -9,6 +9,14 @@ class SearchPromotion extends StatefulWidget {
 }
 
 class _SearchPromotionState extends State<SearchPromotion> {
+  final TextEditingController _resetController = TextEditingController();
+
+  @override
+  void dispose(){
+    _resetController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +36,7 @@ class _SearchPromotionState extends State<SearchPromotion> {
           },
         ),
         title: SearchBar(
+          controller: _resetController,
           hintText: "매장명, 프로모션 검색",
           hintStyle: MaterialStateProperty.all(
             TextStyle(
@@ -40,7 +49,7 @@ class _SearchPromotionState extends State<SearchPromotion> {
           backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[050]!),
           elevation: MaterialStateProperty.all<double>(0.0),
           trailing: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.cancel)),
+            IconButton(onPressed: () {_resetController.clear();}, icon: Icon(Icons.cancel)),
             IconButton(onPressed: () {}, icon: Icon(Icons.search)),
           ],
           shape: MaterialStateProperty.all(
