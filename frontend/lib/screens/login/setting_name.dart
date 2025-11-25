@@ -68,6 +68,7 @@ class _SettingnameState extends State<Settingname> {
               style: TextStyle(
                 color: Colors.grey[800],
                 fontSize: 24,
+                fontFamily: "Pretendard",
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -77,7 +78,9 @@ class _SettingnameState extends State<Settingname> {
                 controller: _nicknameController,
                 decoration: InputDecoration(
                   hintText: "닉네임 입력",
-                  hintStyle: TextStyle(color: Colors.grey[400]),
+                  hintStyle: TextStyle(
+                    fontFamily: "Pretendard", color: Colors.grey[400],
+                  ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xFFFF333F),
@@ -101,6 +104,7 @@ class _SettingnameState extends State<Settingname> {
               style: TextStyle (
                 color:  _isButtonEnabled ? Colors.grey[400] : Color(0xffFF333F),
                 fontSize: 14,
+                fontFamily: "Pretendard",
                 fontWeight: FontWeight.normal,
               ),
             ),
@@ -118,6 +122,7 @@ class _SettingnameState extends State<Settingname> {
                   "다음",
                   style: TextStyle(
                     fontSize: 18,
+                    fontFamily: "Pretendard",
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
