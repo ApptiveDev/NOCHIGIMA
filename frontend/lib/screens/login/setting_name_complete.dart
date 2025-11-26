@@ -24,7 +24,9 @@ class Namecomplete extends StatelessWidget {
             Text(
               "회원가입 완료!",
               style: TextStyle(
-                fontWeight: FontWeight.w700,
+                fontFamily: "Pretendard",
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
                 color: Colors.grey[400],
               ),
             ),
@@ -41,7 +43,10 @@ class Namecomplete extends StatelessWidget {
                 children: <TextSpan>[
                   TextSpan(
                     text: nickName,
-                    style: TextStyle(fontWeight: FontWeight.w800),
+                    style: TextStyle(
+                      fontFamily: "Pretendard",
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                   TextSpan(text: " 님,\n환영해요!"),
                 ],
@@ -62,7 +67,8 @@ class Namecomplete extends StatelessWidget {
                 child: Text(
                   "놓치지마 시작하기",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
+                    fontFamily: "Pretendard",
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),

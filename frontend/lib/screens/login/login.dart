@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter_svg/svg.dart';
 import 'package:frontend/main_screen.dart';
-import 'package:frontend/screens/home/home_screen.dart';
 import './setting_name.dart';
 
 class Login extends StatelessWidget {

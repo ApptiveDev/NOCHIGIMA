@@ -3,6 +3,7 @@ import 'package:frontend/core/app_colors.dart';
 
 // Promotion block
 class PromotionBlock extends StatefulWidget {
+  final VoidCallback onPressed;
   final String imageURL;
   final String title;
   final String deadline;
@@ -16,6 +17,7 @@ class PromotionBlock extends StatefulWidget {
     required this.deadline,
     this.filters = const [],
     this.isLiked = false,
+    required this.onPressed,
   });
 
   @override
@@ -34,12 +36,7 @@ class _PromotionBlockState extends State<PromotionBlock> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => DetailPromotion()),
-        // );
-      },
+      onTap: widget.onPressed,
       child: Container(
         margin: EdgeInsets.only(bottom: 24),
         child: Column(
