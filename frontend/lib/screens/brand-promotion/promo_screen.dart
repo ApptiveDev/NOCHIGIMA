@@ -37,7 +37,9 @@ class _PromoScreenState extends State<PromoScreen> {
         });
       },
       child: Container(
-        padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+        constraints: BoxConstraints(minWidth: 70),
+        alignment: Alignment.center,
+        padding: EdgeInsets.fromLTRB(12, 0, 12, isSelected ? 12 : 13),
         decoration: BoxDecoration(
           border: Border(
             bottom: isSelected
@@ -74,7 +76,7 @@ class _PromoScreenState extends State<PromoScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 80,
+                height: 90,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: MenuCategory.values.map((category){
@@ -142,16 +144,37 @@ class _PromoScreenState extends State<PromoScreen> {
                       imageURL: "assets/images/test_Mask group.jpg",
                       title: "놓치지마 32% 할인",
                       deadline: "2025.09.12 ~ 2026.05.09",
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailPromotion())
+                        );
+                      },
                     ),
                     PromotionBlock(
                       imageURL: "assets/images/test_Mask group.jpg",
                       title: "공차데이",
                       deadline: "2025.10.11",
+                      onPressed: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailPromotion())
+                        );
+                      },
                     ),
                     PromotionBlock(
                       imageURL: "assets/images/test_Mask group.jpg",
                       title: "공차데이2",
                       deadline: "2025.10.11",
+                      onPressed: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailPromotion())
+                        );
+                      },
                     ),
                   ],
                   // click promo -> detail page로 넘어가도록
