@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/core/app_colors.dart';
 
 class PopularSearchSection extends StatefulWidget {
+
   const PopularSearchSection({super.key});
 
   @override
@@ -47,33 +48,41 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
         ? AppColors.nochigimaColor
         : Color(0xFF323439);
 
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 11.0),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 24,
-            child: Text(
-              "$rank",
-              style: TextStyle(
-                fontFamily: "Pretendard",
-                fontWeight: FontWeight.w800,
-                fontSize: 16,
-                color: rankColor,
+    return InkWell(
+      onTap: (){
+
+        print("$rank등 $keyword");
+        },
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 11.0),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 24,
+              child: Text(
+                "$rank",
+                style: TextStyle(
+                  fontFamily: "Pretendard",
+                  fontWeight: FontWeight.w800,
+                  fontSize: 16,
+                  color: rankColor,
+                ),
               ),
             ),
-          ),
-          SizedBox(width: 4),
-          Text(
-            keyword,
-            style: TextStyle(
-              fontFamily: "Pretendard",
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-              color: Color(0xFF323439),
+            SizedBox(width: 4),
+            Text(
+              keyword,
+              style: TextStyle(
+                fontFamily: "Pretendard",
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                color: Color(0xFF323439),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
