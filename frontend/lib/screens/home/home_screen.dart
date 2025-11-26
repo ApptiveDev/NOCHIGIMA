@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/core/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:frontend/screens/search/search_screen.dart';
 import 'package:frontend/widgets/home/home_widgets.dart';
 
 class HomeScreen extends StatefulWidget{
@@ -41,6 +42,9 @@ class _HomeScreen extends State<HomeScreen>{
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen()));
+                  },
                     child: Row(
                       children: [
                         SvgPicture.asset(
