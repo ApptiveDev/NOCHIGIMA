@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frontend/core/app_colors.dart';
-
+import 'package:frontend/screens/brand-promotion/search_promo_screen.dart';
 import 'package:frontend/screens/home/home_screen.dart';
 import 'package:frontend/screens/mypage/mypage_screen.dart';
 import 'package:frontend/screens/search/search_screen.dart';
@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen>{
 
   static const List<Widget> _pages = <Widget>[
     HomeScreen(),
-    SearchScreen(),
+    SearchPromotion(),
     PromoScreen(),
     SocialScreen(),
     MypageScreen(),

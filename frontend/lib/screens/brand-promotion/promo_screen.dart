@@ -197,15 +197,6 @@ class _PromoScreenState extends State<PromoScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingSearchButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SearchPromotion()),
-          );
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

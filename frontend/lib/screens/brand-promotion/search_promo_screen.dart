@@ -25,16 +25,6 @@ class _SearchPromotionState extends State<SearchPromotion> {
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(color: Color(0xFFAFB8C1)),
-        leading: IconButton(
-          icon: Icon(
-            Icons.navigate_before_rounded,
-            color: Colors.black,
-            size: 30,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         title: SearchBar(
           controller: _textController,
           hintText: "매장명, 프로모션 검색",
