@@ -9,11 +9,11 @@ class SearchPromotion extends StatefulWidget {
 }
 
 class _SearchPromotionState extends State<SearchPromotion> {
-  final TextEditingController _resetController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
 
   @override
   void dispose(){
-    _resetController.dispose();
+    _textController.dispose();
     super.dispose();
   }
 
@@ -36,7 +36,7 @@ class _SearchPromotionState extends State<SearchPromotion> {
           },
         ),
         title: SearchBar(
-          controller: _resetController,
+          controller: _textController,
           hintText: "매장명, 프로모션 검색",
           hintStyle: WidgetStateProperty.all(
             TextStyle(
@@ -49,7 +49,7 @@ class _SearchPromotionState extends State<SearchPromotion> {
           backgroundColor: WidgetStateProperty.all<Color>(Colors.grey[050]!),
           elevation: WidgetStateProperty.all<double>(0.0),
           trailing: [
-            IconButton(onPressed: () {_resetController.clear();}, icon: Icon(Icons.cancel)),
+            IconButton(onPressed: () {_textController.clear();}, icon: Icon(Icons.cancel)),
             IconButton(onPressed: () {}, icon: Icon(Icons.search)),
           ],
           shape: WidgetStateProperty.all(
@@ -64,7 +64,13 @@ class _SearchPromotionState extends State<SearchPromotion> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            PopularSearchSection(),
+            PopularSearchSection(
+                onKeywordTap: (keyword){
+                  setState(() {
+                    _textController.text = keyword;
+                  });
+                },
+            ),
           ],
         ),
       ),

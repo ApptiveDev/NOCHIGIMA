@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:frontend/core/app_colors.dart';
 
 class PopularSearchSection extends StatefulWidget {
-
-  const PopularSearchSection({super.key});
+  final Function(String) onKeywordTap;
+  const PopularSearchSection({
+    super.key,
+    required this.onKeywordTap,
+  });
 
   @override
   State<PopularSearchSection> createState() => _PopularSearchSectionState();
@@ -50,7 +53,7 @@ class _PopularSearchSectionState extends State<PopularSearchSection> {
 
     return InkWell(
       onTap: (){
-
+        widget.onKeywordTap(keyword);
         print("$rank등 $keyword");
         },
       splashColor: Colors.transparent,
