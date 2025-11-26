@@ -37,7 +37,9 @@ class _PromoScreenState extends State<PromoScreen> {
         });
       },
       child: Container(
-        padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+        constraints: BoxConstraints(minWidth: 70),
+        alignment: Alignment.center,
+        padding: EdgeInsets.fromLTRB(12, 0, 12, isSelected ? 12 : 13),
         decoration: BoxDecoration(
           border: Border(
             bottom: isSelected
@@ -74,7 +76,7 @@ class _PromoScreenState extends State<PromoScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 80,
+                height: 90,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: MenuCategory.values.map((category){
