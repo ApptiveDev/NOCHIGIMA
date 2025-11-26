@@ -144,16 +144,37 @@ class _PromoScreenState extends State<PromoScreen> {
                       imageURL: "assets/images/test_Mask group.jpg",
                       title: "놓치지마 32% 할인",
                       deadline: "2025.09.12 ~ 2026.05.09",
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailPromotion())
+                        );
+                      },
                     ),
                     PromotionBlock(
                       imageURL: "assets/images/test_Mask group.jpg",
                       title: "공차데이",
                       deadline: "2025.10.11",
+                      onPressed: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailPromotion())
+                        );
+                      },
                     ),
                     PromotionBlock(
                       imageURL: "assets/images/test_Mask group.jpg",
                       title: "공차데이2",
                       deadline: "2025.10.11",
+                      onPressed: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailPromotion())
+                        );
+                      },
                     ),
                   ],
                   // click promo -> detail page로 넘어가도록
