@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/core/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:frontend/models/menu_category.dart';
 import 'package:frontend/screens/search/search_screen.dart';
 import 'package:frontend/widgets/home/home_widgets.dart';
 
 class HomeScreen extends StatefulWidget{
-  const HomeScreen({super.key});
+  final Function(MenuCategory) onCategoryTap;
+  const HomeScreen({
+    super.key,
+    required this.onCategoryTap,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreen();
@@ -87,7 +92,7 @@ class _HomeScreen extends State<HomeScreen>{
           children: [
             Container(height: 5, color: Colors.white),
             BannerSlider(items: bannerItems),
-            CategoryGrid(),
+            CategoryGrid(onCategoryTap: widget.onCategoryTap,),
             MyBookmarks(),
           ],
         ),
