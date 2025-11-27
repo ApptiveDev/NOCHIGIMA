@@ -197,6 +197,7 @@ class _PromoScreenState extends State<PromoScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: Row(),
     );
   }
 }
