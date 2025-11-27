@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frontend/core/app_colors.dart';
+import 'package:frontend/models/menu_category.dart';
 import 'package:frontend/screens/brand-promotion/search_promo_screen.dart';
 import 'package:frontend/screens/home/home_screen.dart';
 import 'package:frontend/screens/mypage/mypage_screen.dart';
@@ -18,14 +19,8 @@ class MainScreen extends StatefulWidget{
 
 class _MainScreenState extends State<MainScreen>{
   int _selectedIndex = 0;
+  MenuCategory _targetCatetory = MenuCategory.pizza;
 
-  static const List<Widget> _pages = <Widget>[
-    HomeScreen(),
-    SearchPromotion(),
-    PromoScreen(),
-    SocialScreen(),
-    MypageScreen(),
-  ];
 
   void _onTapped(int index){
     setState(() {
@@ -33,8 +28,26 @@ class _MainScreenState extends State<MainScreen>{
     });
   }
 
+  void _onCategorySelected(MenuCategory category){
+    setState(() {
+      _targetCatetory = category;
+      _selectedIndex = 2;
+    });
+  }
+
   @override
   Widget build(BuildContext context){
+
+    final List<Widget> _pages = <Widget>[
+      HomeScreen(onCategoryTap: _onCategorySelected,),
+      const SearchPromotion(),
+      PromoScreen(
+        key: ValueKey(_targetCatetory),
+        initialCategory: _targetCatetory,
+      ),
+      const SocialScreen(),
+      const MypageScreen(),
+    ];
 
     BottomNavigationBarItem svgItem(String asset, String label, int idx){
       final bool active = _selectedIndex == idx;

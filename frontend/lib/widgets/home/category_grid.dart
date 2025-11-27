@@ -3,9 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frontend/models/menu_category.dart';
+import 'package:frontend/screens/brand-promotion/promo_screen.dart';
 
 class CategoryGrid extends StatelessWidget {
-  const CategoryGrid({super.key});
+  final Function(MenuCategory) onCategoryTap;
+  const CategoryGrid({
+    super.key,
+    required this.onCategoryTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,20 +33,16 @@ class CategoryGrid extends StatelessWidget {
 
             itemBuilder: (context, index){
               final category = MenuCategory.values[index];
-              return _CategoryItem(
-                  category.label,
-                  category.imagePath,
-                  category.backgroundColor,
-              );
+              return _CategoryItem(context, category);
             }
         )
     );
   }
 
-  Widget _CategoryItem(String label, String SvgPath, Color color){
+  Widget _CategoryItem(BuildContext context, MenuCategory category){
     return InkWell(
       onTap: () {
-
+        onCategoryTap(category);
       },
       child: Column(
       children: [
@@ -49,12 +50,12 @@ class CategoryGrid extends StatelessWidget {
           width: 54,
           height: 54,
           decoration: BoxDecoration(
-            color: color,
+            color: category.backgroundColor,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Center(
             child: SvgPicture.asset(
-              SvgPath,
+              category.imagePath,
               width: 40,
               height: 40,
             ),
@@ -62,7 +63,7 @@ class CategoryGrid extends StatelessWidget {
         ),
         const SizedBox(height: 8.0),
         Text(
-          label,
+          category.label,
           style: TextStyle(
             fontSize: 12,
             fontFamily: "Pretendard",
